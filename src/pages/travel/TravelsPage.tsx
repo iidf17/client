@@ -1,0 +1,69 @@
+import { FC } from "react";
+import { Layout } from "../../components/layouts";
+
+export const TravelsPage: FC = () => {
+    return (
+        <Layout footer={<>footer</>}>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+            <div>TravelsPage</div>
+        </Layout>
+    );
+}
