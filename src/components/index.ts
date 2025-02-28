@@ -1,3 +1,7 @@
 export { Button } from './button';
 export { TextField } from './textField';
 export { UserMenu } from './userMenu';
+export { FilesList } from './filesList';
+export { DropDown } from './dropDown';
+export { Dialog } from './dialog';
+export { EmployeesList } from './employeesList'

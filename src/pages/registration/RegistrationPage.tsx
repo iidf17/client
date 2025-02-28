@@ -1,25 +1,29 @@
 import { FC, useState } from 'react';
+import { Auth } from '../../api';
 import { TextField } from '../../components';
-import { Button } from '../../components';
-import { WidgetLayout } from '../../components/layouts';
-import './registrationPageStyles.scss';
-import { RoutesPaths } from '../../constants/commonConstants';
-import { useNavigate } from 'react-router-dom';
+import { Button } from '../../components'
+import { WidgetLayout } from '../../components/layouts/widgetLayout';
+import './registrationPageStyles.scss'
+import { useNavigate } from 'react-router';
+import { RoutePaths } from '../../constants/commonConstants';
+import { Axios, AxiosError } from 'axios';
 
-type FormFieldsNames = 'login' | 'password' | 'repeatePassword' | 'lastName' | 'firstName' | 'midName';
+type FormFieldsNames = 'login' | 'password' | 'repeatPassword' | 'lastName' | 'firstName' | 'midName';
 
 interface RegistrationForm {
     login: string;
     password: string;
-    repeatePassword: string;
-    lastName: string;
-    firstName: string;
-    midName?: string;
+    repeatPassword: string;
+    // lastName: string;
+    // firstName: string;
+    // midName: string;
 }
 
 export const RegistrationPage: FC = () => {
     const [formFields, setFormFields] = useState<RegistrationForm>();
+    const [errorMessage, setErrorMessage] = useState<string>();
     const navigate = useNavigate();
+    const { signUp, signIn } = Auth;
 
     const changeFieldValue = (value: string | undefined, fieldName: FormFieldsNames) => {
         setFormFields(prev => {
@@ -31,30 +35,60 @@ export const RegistrationPage: FC = () => {
     };
 
     const registrationHandler = () => {
-        navigate(RoutesPaths.Travels);
+        //navigate(RoutePaths.Coaches);
+        if(!formFields?.login || !formFields?.password) {
+            setErrorMessage('Не задан логин или пароль.')
+            return;
+        }
+
+        if(formFields?.password !== formFields?.repeatPassword) {
+            setErrorMessage('Пароли не совпадают.')
+            return;
+        }
     }
-    
+
+    const data = {
+        login: formFields?.login,
+        password: formFields?.password
+    }
+
+    // signUp(data).then(() => {
+    //     signIn(data).then(respData => {
+    //         if(respData.role === 'user'){
+    //             navigate(RoutePaths.NoPermission);
+    //         } else { 
+    //             navigate(RoutePaths.Coaches);
+    //         }
+    //     }).catch(err => 
+    //         setErrorMessage((err as AxiosError)?.message)
+    //     );
+        
+    // }).catch((err) => {
+    //     setErrorMessage((err as AxiosError)?.message)
+    // });
+
     const goToLogin = () => {
-        navigate(RoutesPaths.Login);
+        navigate(RoutePaths.Login);
     }
-    
+
     return (
         <WidgetLayout>
-            <div className="reg-page__form">
-                <h3 className="reg-page__title">Вход</h3>
-                <div className="reg-page__fields">
-                    <TextField labelText="Логин" value={formFields?.login} type="text" onChange={(value) => changeFieldValue(value, 'login')} />
-                    <TextField labelText="Пароль" value={formFields?.password} type="password" onChange={(value) => changeFieldValue(value, 'login')} />
-                    <TextField labelText="Повторите пароль" value={formFields?.repeatePassword} type="password" onChange={(value) => changeFieldValue(value, 'login')} />
-                    <TextField labelText="Фамилия" value={formFields?.lastName} type="text" onChange={(value) => changeFieldValue(value, 'login')} />
-                    <TextField labelText="Имя" value={formFields?.firstName} type="text" onChange={(value) => changeFieldValue(value, 'login')} />
-                    <TextField labelText="Отчество" value={formFields?.midName} type="text" onChange={(value) => changeFieldValue(value, 'login')} />
+            <div className='reg-page__form'>
+                <div className='reg-page__title'>Регистрация</div>
+                <div className='reg-page__fields'>
+                    <TextField labelText="Логин" value={formFields?.login} type='text' onChange={(value) => changeFieldValue(value, 'login')} />
+                    <TextField labelText="Пароль" value={formFields?.password} type='text' onChange={(value) => changeFieldValue(value, 'password')} />
+                    <TextField labelText="Повторите пароль" value={formFields?.repeatPassword} type='text' onChange={(value) => changeFieldValue(value, 'repeatPassword')} />
+                    {/* <TextField labelText="Фамилия" value={formFields?.lastName} type='text' onChange={(value) => changeFieldValue(value, 'lastName')} />
+                    <TextField labelText="Имя" value={formFields?.firstName} type='text' onChange={(value) => changeFieldValue(value, 'firstName')} />
+                    <TextField labelText="Отчество" value={formFields?.midName} type='text' onChange={(value) => changeFieldValue(value, 'midName')} /> */}
+                    {errorMessage && (<span style={{color: 'red'}}>{errorMessage}</span>)}
                 </div>
-                <div className="reg-page__action">    
-                    <Button text="Зарегистрироваться" onClick={registrationHandler} type="primary"/>
-                    <Button text="Войти" onClick={goToLogin} type="secondary" />
+                <div className='reg-page__actions'>
+                    <Button text='Зарегистрироваться' onClick={registrationHandler} type="primary" />
+                    <Button text='Войти' onClick={goToLogin} type="secondary" />
                 </div>
             </div>
         </WidgetLayout>
-    );
+    )
 }

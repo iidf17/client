@@ -1,2 +1,7 @@
-export {LogoIcon} from './LogoIcon';
-export {UserIcon} from './UserIcon';
+export { AddIcon } from './AddIcon'
+export { DownloadIcon } from './DownloadIcon'
+export { TrashIcon } from './TrashIcon'
+export { PencilIcon } from './PencilIcon'
+export { LogoIcon } from './LogoIcon'
+export { UploadIcon } from './UploadIcon'
+export { UserIcon } from './UserIcon'

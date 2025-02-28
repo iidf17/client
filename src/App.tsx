@@ -1,18 +1,22 @@
-import React from 'react';
-import {Route, Routes} from 'react-router-dom';
-import { LoginPage } from './pages';
-import { RegistrationPage } from './pages/registration';
-import { RoutesPaths} from './constants/commonConstants';
-import { TravelsPage } from './pages/travel';
+import { LoginPage, RegistrationPage } from './pages';
+import { Route, Routes } from 'react-router';
+import { RoutePaths } from './constants/commonConstants';
+import { DepartmentsPage } from './pages';
+import { NoPermission } from './pages';
+import { AdminPage } from './pages/admin/AdminPage';
 import './styles/globalStyles.scss'
 
-export const App: React.FC = () => {
+function App() {
   return (
-    <Routes>   
-      <Route path={RoutesPaths.Login} element={<LoginPage />} />
-      <Route path={RoutesPaths.Registration} element={<RegistrationPage />} />
-      <Route path={RoutesPaths.Travels} element={<TravelsPage />} />
-      <Route path={'*'} element={<LoginPage />} />   
+    <Routes>
+      <Route path={RoutePaths.Login} element={<LoginPage/>} />
+      <Route path={RoutePaths.Registration} element={<RegistrationPage/>} />
+      <Route path={RoutePaths.Departments} element={<DepartmentsPage/>} />
+      <Route path={RoutePaths.Admin} element={<AdminPage/>} />
+      <Route path={RoutePaths.NoPermission} element={<NoPermission/>}/>
+      <Route path='*' element={<NoPermission/>} />
     </Routes>
   );
-};
+}
+
+export default App;

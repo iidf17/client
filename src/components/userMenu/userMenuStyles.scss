@@ -1,10 +1,10 @@
-@import '../../styles/varibles.scss';
+@import '../../styles/variables.scss';
 
-.user-menu {
-    width: 32px;
-    height:32px;
+.user-menu { 
+    width: 60px;
+    height: 60px;
     border: 1px solid $color-white;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
@@ -17,11 +17,12 @@
         background: $color-underlay;
     }
 
-    &__menu {
+    &__menu{
         z-index: 9999;
-        position:absolute;
+        position: absolute;
         margin-top: 94px;
-        margin-right: 30px;
+        margin-right: 20px;
+        border: 1px solid;
         background-color: $color-white;
         color: $color-darkgrey;
         padding: 12px;
@@ -30,15 +31,15 @@
         display: flex;
         flex-direction: column;
         font-size: 14px;
-        gap:4px;    
+        gap: 4px;
         width: max-content;
         max-width: 400px;
-        box-shadow: $shadow;   
+        box-shadow: $shadow;
     }
 
-    &__menu-item {
-        &:hover {
+    &__menu-item{
+        &:hover{
             opacity: 0.9;
-        }
+        }    
     }
 }

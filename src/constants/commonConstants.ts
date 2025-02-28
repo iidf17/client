@@ -1,5 +1,10 @@
-export enum RoutesPaths {
+export enum RoutePaths {
     Login = '/',
-    Registration= 'registration',
-    Travels = 'travels',
+    Registration = '/Registration',
+    Departments = '/Departments',
+    NewPage = '/NewPage',
+    Admin = '/admin',
+    NoPermission = '/nopermission'
 }
+
+export const AccessTokenKey = 'AccessToken';

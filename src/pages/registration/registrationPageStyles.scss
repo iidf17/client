@@ -1,13 +1,14 @@
 .reg-page {
-    &__form {
+
+    &__form{
         min-width: 450px;
         min-height: 250px;
         border-radius: 4px;
-        box-shadow: 0 0 6px 0px #00000024;
+        box-shadow: 0 0 6px 0px rgba(0, 0, 0, 0.14117);
         padding: 32px;
         display: flex;
-        flex-direction: column;
         gap: 20px;
+        flex-direction: column;
     }
 
     &__title {
@@ -24,7 +25,7 @@
         gap: 10px;
     }
 
-    &__action {
+    &__actions {
         display: flex;
         flex-direction: column;
         gap: 10px;

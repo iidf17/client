@@ -1,4 +1,4 @@
-@import '../../../styles/varibles.scss';
+@import '../../../styles/variables.scss';
 
 .layout {
     position: fixed;
@@ -13,7 +13,7 @@
         background: $color-blue;
         min-height: 65px;
         max-height: 65px;
-        display:flex;
+        display: flex;
         align-items: center;
         padding: 0px 30px;
         color: $color-white;
@@ -26,7 +26,7 @@
         margin-left: auto;
     }
 
-    &__body {
+    &__body{
         margin-top: 75px;
         padding: 0 30px;
         overflow: auto;

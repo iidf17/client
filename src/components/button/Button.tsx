@@ -5,6 +5,7 @@ import clsx from 'classnames';
 
 export const Button: FC<ButtonProps> = props => {
     const {
+        className,
         onClick,
         text,
         type

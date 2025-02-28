@@ -15,7 +15,7 @@ export const Layout: FC<LayoutProps> = props => {
                     <LogoIcon/>
                 </div>
                 <div>
-                    <div>{title ?? 'Путешествия'}</div>
+                    <div>{title ?? 'Департаменты'}</div>
                     <div>{headerChild}</div>
                 </div>
                 <div className="layout__user-menu">

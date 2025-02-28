@@ -11,25 +11,25 @@ export const TextField: FC<TextFieldProps> = props => {
         labelText,
         lblWeight,
         onChange,
-        type='text',
+        type = 'text',
         value
     } = props;
 
-    const changeValueHandler = (event: ChangeEvent<HTMLInputElement>) =>{
+    const changeValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
         onChange && onChange(event.target.value);
-    };
+    }
 
     return (
         <div className="container">
-            <label className={clsx('container__lbl', {
-                'container__lbl_strong': lblWeight==='strong'
+            <label className={clsx('container_lbl', {
+                'container_lbl_strong': lblWeight==='strong'
             })}>{labelText}</label>
-            <input className="container__input" type={type} value={value} onChange={changeValueHandler} />
-            <span className={clsx('container__info', {
-             'container__info_info': infoType === 'info',
-             'container__info_error': infoType === 'error', 
-             'container__info_success': infoType === 'success',
+            <input className="container_input" type={type} value={value} onChange={changeValueHandler}/>
+            <span className={clsx('container_info', {
+                'container_info_info': infoType === 'info',
+                'container_info_error': infoType === 'error',
+                'container_info_succes': infoType === 'success'
             })}>{info}</span>
         </div>
-    );
+    )
 }

@@ -4,32 +4,32 @@ import { UserMenuProps } from "./UserMenuProps";
 import './userMenuStyles.scss';
 
 export const UserMenu: FC<UserMenuProps> = props => {
-    const { items } = props;
+    const {items} = props;
 
-    const [show, setShow] = useState<boolean>(false);
+    const [show, setShow] = useState<Boolean>(false);
 
     const showMenuHandler = () => {
         setShow(prev => !prev);
     }
 
-    return(
+    return (
         <div className="user-menu">
             <UserIcon onClick={showMenuHandler} />
             {show && (
                 <>
                     <div className="user-menu__menu">
-                        {items.map((item) => (
-                            <span  key={item.id}
-                              className="user-menu__menu-item"
-                              onClick={item.action}
+                        { items.map(item => (
+                            <span key={item.id}
+                            className="user-menu__menu-item" 
+                            onClick={item.action}
                             >
-                              {item.label}
+                                {item.label}
                             </span>)
-                        )}
-                    </div>
-                    <div className="user-menu__underlay" onClick={showMenuHandler} />
-                </>
-            )}
+                    )}
+                </div>
+                <div className="user-menu__underlay" onClick={showMenuHandler} />
+            </>
+        )}
         </div>
-    );
+    )
 }
