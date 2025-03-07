@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Auth } from '../../api';
+import { AuthApi } from '../../api';
 import { TextField } from '../../components';
 import { Button } from '../../components'
 import { WidgetLayout } from '../../components/layouts/widgetLayout';
@@ -7,6 +7,7 @@ import './registrationPageStyles.scss'
 import { useNavigate } from 'react-router';
 import { RoutePaths } from '../../constants/commonConstants';
 import { Axios, AxiosError } from 'axios';
+import { U } from 'react-router/dist/development/fog-of-war-Cm1iXIp7';
 
 type FormFieldsNames = 'login' | 'password' | 'repeatPassword' | 'lastName' | 'firstName' | 'midName';
 
@@ -23,7 +24,11 @@ export const RegistrationPage: FC = () => {
     const [formFields, setFormFields] = useState<RegistrationForm>();
     const [errorMessage, setErrorMessage] = useState<string>();
     const navigate = useNavigate();
-    const { signUp, signIn } = Auth;
+    const data = {
+        login: formFields?.login,
+        password: formFields?.password
+    }
+    const { signUp, signIn } = AuthApi;
 
     const changeFieldValue = (value: string | undefined, fieldName: FormFieldsNames) => {
         setFormFields(prev => {
@@ -45,27 +50,26 @@ export const RegistrationPage: FC = () => {
             setErrorMessage('Пароли не совпадают.')
             return;
         }
-    }
 
-    const data = {
-        login: formFields?.login,
-        password: formFields?.password
+        signUp(data).then(() => {
+            if(typeof data.login === 'string' && data.login.trim() !== '') {
+                return
+            };
+            signIn(data).then(respData => {
+                if(respData.role === 'user'){
+                    navigate(RoutePaths.NoPermission);
+                } else { 
+                    navigate(RoutePaths.Departments);
+                }
+            }).catch(err => 
+                setErrorMessage((err as AxiosError)?.message)
+            );
+            
+        }).catch((err) => {
+            setErrorMessage((err as AxiosError)?.message)
+        });
     }
-
-    // signUp(data).then(() => {
-    //     signIn(data).then(respData => {
-    //         if(respData.role === 'user'){
-    //             navigate(RoutePaths.NoPermission);
-    //         } else { 
-    //             navigate(RoutePaths.Coaches);
-    //         }
-    //     }).catch(err => 
-    //         setErrorMessage((err as AxiosError)?.message)
-    //     );
-        
-    // }).catch((err) => {
-    //     setErrorMessage((err as AxiosError)?.message)
-    // });
+   
 
     const goToLogin = () => {
         navigate(RoutePaths.Login);

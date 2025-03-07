@@ -1,6 +1,6 @@
 export interface LoginRequestDto {
-    login: string;
-    password: string;
+    login?: string;
+    password?: string;
 }
 
 export interface LoginResponseDto {
@@ -10,38 +10,74 @@ export interface LoginResponseDto {
 }
 
 export interface RegistrationRequestDto {
-    login: string;
-    password: string;
+    login?: string;
+    password?: string;
 }
 
-//TODO: дополнить
 export interface AddDepartmentRequestDto {
-    coachId?: number;
-    athleteId?: number;
     name: string;
-    date?: Date;
     description?: string;
-    trainingType?: number;
 }
 
-export interface EditDepartmentResponceDto {
+export interface EditDepartmentResponseDto {
     id: number;
-    coachId?: number;
-    athleteId?: number;
     name: string;
-    date?: Date;
     description?: string;
-    trainingType?: number;
 }
 
+export interface SetRoleResponseDto {
+    userId: number;
+    roleName: 'admin' | 'manager' | 'user';
+}
 
+export interface AddEmployeeResponseDto {
+    departmentId: number;
+    firstName: string;
+    lastName: string;
+    midName?: string;
+}
 
-export interface EditCoachResponceDto {
+export interface UpdateEmployeeResponseDto {
     id: number;
-    coachId?: number;
-    athleteId?: number;
-    name: string;
-    date?: Date;
+    firstName: string;
+    lastName: string;
+    midName?: string;
+    educations: Array<{
+        id: number;
+        title: string;
+        description?: string;
+    }>;
+    workExperience: Array<{
+        id: number;
+        workedYears: number;
+        description?: string;
+    }>;
+    filesList: Array<{
+        id: number;
+        systemName: string;
+        displayName: string;
+    }>
+}
+
+export interface AddEducationResponseDto {
+    employeeId: number;
+    title: string;
     description?: string;
-    trainingType?: number;
+}
+
+export interface AddWorkExperienceResponseDto {
+    employeeId: number;
+    workedYears: number;
+    description?: string;
+}
+
+export interface UploadFileResponseDto {
+    employeeId: number;
+    fileString: string;
+    fileName: string;
+}
+
+export interface DownloadFileResponseDto {
+    systemName: string;
+    displayName: string;
 }

@@ -1,17 +1,32 @@
-import { FC, useState } from 'react';
-import { Auth } from '../../api';
+import { FC, useDebugValue, useEffect, useState } from 'react';
+import { AuthApi } from '../../api';
 import { TextField } from '../../components';
 import { Button } from '../../components'
 import { WidgetLayout } from '../../components/layouts/widgetLayout';
 import './loginPageStyles.scss'
 import { useNavigate } from 'react-router';
 import { RoutePaths } from '../../constants/commonConstants';
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxToolkitHooks';
+import { displayPartsToString } from 'typescript';
+import { signIn } from '../../services';
 
 export const LoginPage: FC = () => {
+    const { accessToken, role } = useAppSelector((state) => state.user);
+    const dispatch = useAppDispatch();
+
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const navigate = useNavigate();
-    const { signIn } = Auth;
+
+    useEffect(() => {
+        if(accessToken) {
+            if(role === 'user' || !role) {
+                navigate(RoutePaths.NoPermission);
+            } else {
+                navigate(RoutePaths.Departments);
+            }
+        }
+    }, [accessToken, role, navigate]);
 
     const loginChangeHandler = (value: string) => {
         setLogin(value);
@@ -22,19 +37,7 @@ export const LoginPage: FC = () => {
     }
 
     const loginHandler = () => {
-        // console.log({
-        //     login,
-        //     password
-        // });
-        navigate(RoutePaths.Departments);
-
-        signIn({login, password})
-            .then((resp) => {
-                console.log(resp);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+        dispatch(signIn({login, password}));
     }
 
     const toRegistrationHandler = () => {

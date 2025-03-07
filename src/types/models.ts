@@ -6,7 +6,8 @@ export interface Employee {
     lastName: string;
     middleName?: string;
     education?: Array<Education>;
-    workExperience?: Array<WorkExperience>
+    workExperience?: Array<WorkExperience>;
+    files?: Array<UserFile>;
 }
 
 export interface Department {
@@ -29,7 +30,7 @@ export interface WorkExperience {
 }
 
 export interface UserFile {
-    id:number;
+    id: number;
     systemName: string;
     displayName: string;
 }

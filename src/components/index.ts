@@ -5,3 +5,5 @@ export { FilesList } from './filesList';
 export { DropDown } from './dropDown';
 export { Dialog } from './dialog';
 export { EmployeesList } from './employeesList'
+export { EducationList } from './educationsList'
+export { WorkExperienceList } from './workExperienceList'

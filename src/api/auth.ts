@@ -2,7 +2,7 @@ import { AccessTokenKey } from "../constants/commonConstants";
 import { AxiosInstance } from './axiosInstance';
 import { LoginRequestDto, LoginResponseDto, RegistrationRequestDto } from "../types/apiTypes";
 
-const {axiosPost} = AxiosInstance();
+const { axiosPost } = AxiosInstance();
 
 const signIn = async(loginData: LoginRequestDto) => {
     const data = await axiosPost('/login', loginData) as LoginResponseDto;
@@ -13,7 +13,7 @@ const signIn = async(loginData: LoginRequestDto) => {
 const signUp = async(regData: RegistrationRequestDto) =>
     await axiosPost('/register', regData) as void;
 
-export const Auth = {
+export const AuthApi = {
     signIn,
     signUp
 }
